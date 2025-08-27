@@ -1,5 +1,4 @@
 What is OS: System software that serves as an interface between hardware and software
-
 ###### Types:
 1. Batch: groups similar tasks in batches and batch wise execution
 2. Multi-programming OS: multiple programs run in memory , cpu is never left idle. doesnt execute simultaneously but as soon as program 1 needs to wait for input, cpu transfers to another program and so on
@@ -157,7 +156,6 @@ paging is the process of moving pages from secondary memory to main memory
 paging helps avoid external fragmentation by eliminating the need for contiguous memory
 
 frame in main memo refered by a page in secondary memo
-
 ###### Segmentation:
 divides program into variable-size logical segments instead of pages
 suffers from external fragmentation

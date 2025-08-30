@@ -1,5 +1,4 @@
 What is OOP - paradigm based on objects containing attributes and methods
-
 ##### Benefits: 
 - code reusability
 - modularity

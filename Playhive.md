@@ -1,4 +1,3 @@
-## Playhive:
 ##### Game logic: 
 ###### 2048:
 created swipe functions for swipe left, right, up and down that facilitate the trigger of swipe like motion in game board with the use of key press and merge tiles accordingly

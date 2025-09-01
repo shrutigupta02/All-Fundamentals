@@ -1,3 +1,48 @@
+## Line by line dissection:
+#### Developed a dynamic, cross-platform web application for classic games like Tic-Tac-Toe and 2048 using the MERN stack.
+1. **"What makes your application 'dynamic'?"**
+    - **They're testing**: Do you understand what dynamic means in web development?
+    - **Your Answer**: _"The game states update in real-time as users interact - when you make a move in 2048, the board immediately reflects the changes without page refresh. The application responds to user input dynamically through React's state management."_
+2. **"How did you ensure cross-platform compatibility?"**
+    - **They're testing**: Understanding of responsive design and device compatibility
+    - **Your Answer**: _"I used Tailwind CSS for responsive design and implemented touch event handling for mobile devices. The games work on both desktop (keyboard input) and mobile (touch/swipe gestures)."_
+3. **"Walk me through the game implementations - how did you build 2048 and Tic-Tac-Toe from scratch?"**
+    - **They're testing**: Your actual coding ability and problem-solving skills
+    - **Your Answer**: Focus on your game logic - the swipe functions, win detection algorithms, etc.
+
+#### Implemented Firebase Authentication and form management with Formik/Yup for robust input validation.
+
+4. **"How does Firebase Authentication integrate with your application?"**
+    - **They're testing**: Understanding of authentication flow and frontend implementation
+    - **Your Answer**: _"I implemented Firebase Authentication on the frontend using Firebase SDK. It handles user login, registration, and session management with secure token generation. Users can sign in using email/password, and Firebase maintains their authentication state across browser sessions.
+  5. **"Show me how you implemented form validation with Formik and Yup for Firebase forms"**
+    - **They're testing**: Integration of form libraries with Firebase authentication
+    - i used formik to provide me with ready-to-use forms that handle state changes in input values without explicit coding for react hooks like setUsername, setPassword. i used yup to validate email addresses, phone numbers to avoid getting invalid inputs like phone numbers less than 10 digits or email addresses with wrong format
+  6. **"How do you handle authentication state management in React with Firebase?"**
+    - **They're testing**: Frontend authentication flow and React integration
+    - **Your Answer**: "I use Firebase's onAuthStateChanged listener in a useEffect hook to monitor authentication status. This allows React components to automatically update when users log in or out.
+#### Created scalable backend with Node.js + Express.js, and used MongoDB for persistent game/user data storage.
+7. **"What makes your backend 'scalable'?"**
+    - **They're testing**: Do you understand scalability concepts?
+    - A scalable database can handle increasing workloads of data, transactions, and users without sacrificing performance or reliability
+    - "Making an API call on every single move, especially in a fast-paced game, is inefficient. To make it scalable and reduce server load, I implemented **debouncing** on the front-end. Instead of saving the state immediately, the application waits until the user has paused for a moment—say, for 1.5 seconds—and then sends a single API call to save the latest game state. This drastically cuts down on network traffic and is much more efficient.
+    - apart from this, my database is deployed on mongoDB atlas, which provides easy methods to scale vertically and horizontally as my application and traffic would grow.
+  8. **"Show me your Express.js server structure and explain the middleware you used"**
+    - **They're testing**: Understanding of Express concepts
+    - **Your Answer**: 
+      i have used cors in my backend to facilitate connection with the frontend made in react, i have created an express app, and defined routes for setting user data storage, getting game metadata from db and one for storing game state 
+  9. **"How do you handle errors in your Express application?"**
+    - **They're testing**: Error handling practices
+    - answ: to handle the errors i have implemented try-catch blocks in every route so any runtime error does not disrupt the application. apart from this i have used HTTP status codes like 200 for success and 500 for internal server error
+  10. **"What RESTful principles did you follow in your API design?"**
+      - my application executes separation of concerns between the client and the server, the client sends a requests and the server processes it and responds, my application uses appropriate HTTP methods, get, post alongside returning appropriate status codes
+11. **"Explain your MongoDB schema design"**
+    - They're testing: Database design skills and understanding of NoSQL principles
+    - i have created three schemas, one User model that contains info about all users registered on my application it stores attributes like their chosen display name, phone numbers, favorite games etc, and one for games metadata it includes info about all games like their names, description 
+
+#### Built frontend using React.js and Tailwind CSS
+
+
 ##### Game logic: 
 ###### 2048:
 created swipe functions for swipe left, right, up and down that facilitate the trigger of swipe like motion in game board with the use of key press and merge tiles accordingly
@@ -51,7 +96,7 @@ Database Integration: Using Mongoose models to interact with MongoDB
 
 Your Data Models:
 Games Model: Stores metadata about available games (name, description, etc.)
-User Model: Stores user registration data (firstName, lastName, email, password, phone)
+User Model: Stores additional user data like chosen display name, favorite games, contact number, etc.
 
 MongoDB Concepts:
 
@@ -59,7 +104,7 @@ Collections: Like tables in SQL (you have Games and User collections)
 Documents: Individual records (each user is a document)
 Schemas: Structure defined by your Mongoose models
 CRUD Operations: Create (POST /user), Read (GET /games)
-
+SCALING: debouncing which is done by lodash npm package
 ###### Authentication: Firebase
 
 What You Integrated:
@@ -101,6 +146,11 @@ _"For both games, I use React's useState hook to manage state locally. The 2048 
 
 _"I integrated Formik for form state management and Yup for validation schemas. This handles user input validation for registration forms, including email format, required fields, and password requirements."_
 
+#### "Why did you use Firebase for authentication but MongoDB Atlas for your database? Why not use Firestore?"
+    
+- **Your Perfect Answer:** "That was a deliberate architectural decision. I chose **Firebase Authentication** because it's a specialized, secure, and incredibly fast solution for user identity management. It handles everything from social logins to password resets out of the box, which let me focus on my application's core logic."
+    
+    "For my application's data—like user profiles and game statistics—I wanted the power and flexibility of MongoDB's querying capabilities and the robust ecosystem around the MERN stack, specifically with Mongoose. Using **MongoDB Atlas** gave me that flexibility and a clear, simple path for scaling my data layer as the app grows. This **'best-of-breed'**approach allowed me to use the best specialized service for each part of my application: Firebase for identity and Atlas for data."
 ## Questions:
 
 ## **From "Developed a dynamic, cross-platform web application"**
@@ -128,10 +178,10 @@ _"I integrated Formik for form state management and Yup for validation schemas. 
     - **Your Answer**: _"I implemented Firebase Authentication on the frontend using Firebase SDK. It handles user login, registration, and session management with secure token generation. Users can sign in using email/password, and Firebase maintains their authentication state across browser sessions. My backend user registration endpoint complements this by storing additional profile data like phone numbers that Firebase doesn't handle by default."_
 5. **"Show me how you implemented form validation with Formik and Yup for Firebase forms"**
     - **They're testing**: Integration of form libraries with Firebase authentication
-    - **Your Answer**: _"I wrapped Firebase authentication forms with Formik for better form state management and Yup for validation schemas. Before Firebase processes the authentication, Formik validates email format, password strength, and required fields. This provides immediate user feedback and prevents invalid data from reaching Firebase, improving user experience."_
+    - i used formik to provide me with ready-to-use forms that handle state changes in input values without explicit coding for react hooks like setUsername, setPassword. i used yup to validate email addresses, phone numbers to avoid getting invalid inputs like phone numbers less than 10 digits or email addresses with wrong format
 6. **"How do you handle authentication state management in React with Firebase?"**
     - **They're testing**: Frontend authentication flow and React integration
-    - **Your Answer**: _"I use Firebase's onAuthStateChanged listener in a useEffect hook to monitor authentication status. This allows React components to automatically update when users log in or out. I maintain the current user state in React context or component state, which determines what UI elements to show (login forms vs. authenticated content)."_
+    - **Your Answer**: "I use Firebase's onAuthStateChanged listener in a useEffect hook to monitor authentication status. This allows React components to automatically update when users log in or out. I maintain the current user state in React context or component state, which determines what UI elements to show (login forms vs. authenticated content)."
 
 ---
 
@@ -141,7 +191,10 @@ _"I integrated Formik for form state management and Yup for validation schemas. 
 
 7. **"What makes your backend 'scalable'?"**
     - **They're testing**: Do you understand scalability concepts?
-    - **Realistic Answer**: _"Currently, my backend is a foundation for scalability with clean separation of routes and models. To truly scale, I'd need to add connection pooling, caching, load balancing, and possibly microservices architecture."_
+    - A scalable database can handle increasing workloads of data, transactions, and users without sacrificing performance or reliability
+    - "Making an API call on every single move, especially in a fast-paced game, is inefficient. To make it scalable and reduce server load, I implemented **debouncing** on the front-end. Instead of saving the state immediately, the application waits until the user has paused for a moment—say, for 1.5 seconds—and then sends a single API call to save the latest game state. This drastically cuts down on network traffic and is much more efficient.
+    - apart from this, my database is deployed on mongoDB atlas, which provides easy methods to scale vertically and horizontally as my application and traffic would grow.
+    
 8. **"Show me your Express.js server structure and explain the middleware you used"**
     - **They're testing**: Understanding of Express concepts
     - **Your Answer**: Point to your server.js - CORS, JSON parsing, route organization

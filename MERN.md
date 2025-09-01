@@ -81,3 +81,9 @@ Arrow functions offer a concise syntax (using `=>`) for writing JavaScript func
 
 Scope: range of accessibility and visibility of variables. three types: global scope, func scope, block scope
 
+#### REST principles
+1. client server are diff and separation of concerns, client requests and serves processes and responds
+2. Uniform interface like HTTP based applications use http methods like GET, POST, PUT
+3. Stateless: server does not use info from previous requests to process a new one, each request contains all info necessary to fulfil it
+4. chod baaki ka
+

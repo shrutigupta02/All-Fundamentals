@@ -65,6 +65,9 @@ const express = require('express');
 What is express.js
 -> node.js web app **framework** that provides a wide set of features to build both web and mobile apps
 
+what is cors:
+cross origin requests, ensures frontend connection running on different port with backend running on different port
+
 What is mongoose
 -> also node.js web app framework that makes connecting a backend server to a db much easier, express and mongoose can be used together
 
